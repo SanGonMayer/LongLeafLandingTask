@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  address: MyString
+  loan_term: 1
+  purchase_price: 9.99
+  repair_budget: 9.99
+  arv: 9.99
+  name: MyString
+  email: MyString
+  phone: MyString
+
+two:
+  address: MyString
+  loan_term: 1
+  purchase_price: 9.99
+  repair_budget: 9.99
+  arv: 9.99
+  name: MyString
+  email: MyString
+  phone: MyString

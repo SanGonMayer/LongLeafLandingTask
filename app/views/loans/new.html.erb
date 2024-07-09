@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Application Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <%= stylesheet_link_tag 'form_styles', media: 'all' %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body>
+    <div class="form-container">
+        <div class="flex flex-col items-center mb-6">
+            <%= image_tag 'longleaf_lending_logo-8876db04fa683bf88fe05494b2833eab76e7052a01f70454ede211cd01c3ea77-removebg-preview', class: 'h-12 w-auto mb-6 self-start' %>
+            <h2 class="title">Real Estate Profit and Return Calculator</h2>
+        </div>
+        <p class="subtitle">Start here with our 30 second form.</p>
+        <%= form_with model: @loan, url: loans_path, local: true, id: "loan-form", class: "space-y-4" do |form| %>
+            <!-- Step 1: Property Address -->
+            <div class="form-step active">
+                <div>
+                    <%= form.label :address, "Property Address", class: "block mb-1" %>
+                    <%= form.text_field :address, placeholder: "Address, City, State, & Zip for your target property", class: "w-full px-4 py-2 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:ring-0" %>
+                    <div id="address-error" class="error-message hidden"></div>
+                </div>
+                <div class="button-group mt-4 flex justify-end">
+                    <button type="button" class="next-button bg-blue-600 text-white rounded hover:bg-blue-700 px-4 py-2" onclick="nextStep()">Next</button>
+                </div>
+            </div>
+            <!-- Step 2: Loan Term -->
+            <div class="form-step">
+                <div>
+                    <%= form.label :loan_term, "Loan Term (in months)", class: "block mb-1" %>
+                    <%= form.number_field :loan_term, min: 1, max: 12, placeholder: "How many months do you want the loan for (up to 12)?", class: "w-full px-4 py-2 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:ring-0" %>
+                    <div id="loan_term-error" class="error-message hidden"></div>
+                </div>
+                <div class="button-group mt-4 flex justify-between">
+                    <button type="button" class="prev-button bg-gray-600 text-white rounded hover:bg-gray-700 px-4 py-2" onclick="prevStep()">Previous</button>
+                    <button type="button" class="next-button bg-blue-600 text-white rounded hover:bg-blue-700 px-4 py-2" onclick="nextStep()">Next</button>
+                </div>
+            </div>
+            <!-- Step 3: Purchase Price -->
+            <div class="form-step">
+                <div>
+                    <%= form.label :purchase_price, "Purchase Price", class: "block mb-1" %>
+                    <%= form.number_field :purchase_price, placeholder: "What are you purchasing the property for? Please include any assignment fee.", class: "w-full px-4 py-2 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:ring-0" %>
+                    <div id="purchase_price-error" class="error-message hidden"></div>
+                </div>
+                <div class="button-group mt-4 flex justify-between">
+                    <button type="button" class="prev-button bg-gray-600 text-white rounded hover:bg-gray-700 px-4 py-2" onclick="prevStep()">Previous</button>
+                    <button type="button" class="next-button bg-blue-600 text-white rounded hover:bg-blue-700 px-4 py-2" onclick="nextStep()">Next</button>
+                </div>
+            </div>
+            <!-- Step 4: Repair Budget -->
+            <div class="form-step">
+                <div>
+                    <%= form.label :repair_budget, "Estimated Repair Budget", class: "block mb-1" %>
+                    <%= form.number_field :repair_budget, placeholder: "Full budget expected to rehab the property.", class: "w-full px-4 py-2 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:ring-0" %>
+                    <div id="repair_budget-error" class="error-message hidden"></div>
+                </div>
+                <div class="button-group mt-4 flex justify-between">
+                    <button type="button" class="prev-button bg-gray-600 text-white rounded hover:bg-gray-700 px-4 py-2" onclick="prevStep()">Previous</button>
+                    <button type="button" class="next-button bg-blue-600 text-white rounded hover:bg-blue-700 px-4 py-2" onclick="nextStep()">Next</button>
+                </div>
+            </div>
+            <!-- Step 5: After Repair Value -->
+            <div class="form-step">
+                <div>
+                    <%= form.label :arv, "After Repair Value (ARV)", class: "block mb-1" %>
+                    <%= form.number_field :arv, placeholder: "What do you think the property's market value will be when you complete the rehab?", class: "w-full px-4 py-2 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:ring-0" %>
+                    <div id="arv-error" class="error-message hidden"></div>
+                </div>
+                <div class="button-group mt-4 flex justify-between">
+                    <button type="button" class="prev-button bg-gray-600 text-white rounded hover:bg-gray-700 px-4 py-2" onclick="prevStep()">Previous</button>
+                    <button type="button" class="next-button bg-blue-600 text-white rounded hover:bg-blue-700 px-4 py-2" onclick="nextStep()">Next</button>
+                </div>
+            </div>
+            <!-- Step 6: Name, Phone, and Email -->
+            <div class="form-step">
+                <div>
+                    <%= form.label :phone, "Your Phone Number", class: "block mb-1" %>
+                    <%= form.telephone_field :phone, placeholder: "Enter your phone number", pattern: "[0-9]*", class: "w-full px-4 py-2 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:ring-0", id: "phone" %>
+                    <div id="phone-error" class="error-message hidden"></div>
+                </div>
+                <div>
+                    <%= form.label :name, "Full Name", class: "block mb-1" %>
+                    <%= form.text_field :name, placeholder: "Enter your name and surname", class: "w-full px-4 py-2 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:ring-0" %>
+                    <div id="name-error" class="error-message hidden"></div>
+                </div>
+                <div>
+                    <%= form.label :email, "Email", class: "block mb-1" %>
+                    <%= form.email_field :email, placeholder: "Enter your email", class: "w-full px-4 py-2 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:ring-0" %>
+                    <div id="email-error" class="error-message hidden"></div>
+                </div>
+
+                <div class="button-group mt-4 flex justify-between">
+                    <button type="button" class="prev-button bg-gray-600 text-white rounded hover:bg-gray-700 px-4 py-2" onclick="prevStep()">Previous</button>
+                    <%= form.submit "Submit", class: "bg-green-600 text-white rounded hover:bg-green-700 px-4 py-2" %>
+                </div>
+            </div>
+        <% end %>
+    </div>
+    <%= javascript_include_tag 'form_validation' %>
+    <%= javascript_include_tag 'form_steps' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const phoneInputField = document.querySelector("#phone");
+            const phoneInput = window.intlTelInput(phoneInputField, {
+                initialCountry: "auto",
+                geoIpLookup: function(success, failure) {
+                    fetch('https://ipinfo.io', {
+                        mode: 'no-cors'
+                    }).then(function(resp) {
+                        let countryCode = (resp && resp.country) ? resp.country : "us";
+                        success(countryCode);
+                    }).catch(function() {
+                        success("us");
+                    });
+                },
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js",
+            });
+        });
+
+    </script>
+</body>
+</html>

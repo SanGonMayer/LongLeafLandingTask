@@ -1,0 +1,101 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f4f8;
+}
+
+.form-container {
+    max-width: 650px;
+    width: 100%;
+    padding: 2rem;
+    background-color: rgba(231,231,229,255);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    min-height: 450px;
+    height: 60%;
+}
+
+.title{
+    color: #20212a;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.subtitle {
+    color: rgba(37,39,48,255);
+    text-align: center;
+}
+
+.next-button {
+    background-color: #758150;
+    color: white;
+    border-radius: 0.375rem; /* Rounded corners */
+    padding: 0.75rem 1.5rem; /* Padding for the button */
+    transition: background-color 0.4s; /* Smooth transition for hover effect */
+}
+
+.next-button:hover{
+    background-color: #657142; /* Slightly darker shade for hover effect */
+}
+
+.form-step {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: translateX(100%);
+}
+
+.form-step.active {
+    opacity: 1;
+    position: relative;
+    transform: translateX(0);
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.form-container h2 {
+    color: rgb(89, 103, 45);
+    text-align: center;
+}
+
+.form-container label {
+    color: #2f855a;
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"], input[type="number"], input[type="email"], input[type="tel"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background: transparent;
+    transition: border-color 0.3s;
+    text-align: left;
+}
+
+input[type="text"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="tel"]:focus {
+    border-bottom-color: #38a169;
+    outline: none;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: none;
+}
