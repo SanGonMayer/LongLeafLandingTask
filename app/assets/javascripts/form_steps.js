@@ -50,5 +50,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Initialize the first step as active
-    showStep(currentStep);
+    //showStep(currentStep);
 });

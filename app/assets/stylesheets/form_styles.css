@@ -18,7 +18,7 @@ body {
     position: relative;
     overflow: hidden;
     min-height: 450px;
-    height: 60%;
+    height: 65%;
 }
 
 .title{
@@ -31,6 +31,18 @@ body {
 .subtitle {
     color: rgba(37,39,48,255);
     text-align: center;
+}
+
+.submit-button {
+    background-color: #1662b9;
+    color: white;
+    border-radius: 0.375rem; /* Rounded corners */
+    padding: 0.75rem 1.5rem; /* Padding for the button */
+    transition: background-color 0.4s; /* Smooth transition for hover effect */
+}
+
+.submit-button:hover{
+    background-color: #1a6e44; /* Slightly darker shade for hover effect */
 }
 
 .next-button {
@@ -71,7 +83,7 @@ body {
 }
 
 .form-container label {
-    color: #2f855a;
+    color: #6d7174;
     font-weight: bold;
     text-align: left;
     width: 100%;
@@ -97,5 +109,12 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="email"]:focus,
     color: red;
     font-size: 0.875rem;
     margin-top: 0.25rem;
+}
+
+.hidden {
     display: none;
+}
+
+.border-red-500 {
+    border-color: #f56565; /* Color rojo */
 }

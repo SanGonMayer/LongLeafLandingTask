@@ -22,18 +22,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!input.value || (field.validate && !field.validate(input.value))) {
                 isValid = false;
-                input.classList.add('border-red-500');
-                errorDiv.textContent = field.errorMessage;
-                errorDiv.classList.remove('hidden');
+                input.classList.add('border-red-500'); // Agrega la clase de error
+                errorDiv.textContent = field.errorMessage; // Muestra el mensaje de error
+                errorDiv.classList.remove('hidden'); // Muestra el div de error
             } else {
-                input.classList.remove('border-red-500');
-                errorDiv.classList.add('hidden');
+                input.classList.remove('border-red-500'); // Remueve la clase de error
+                errorDiv.classList.add('hidden'); // Oculta el div de error
             }
         });
 
         if (isValid) {
             alert('Formulario enviado correctamente');
-            this.submit(); // Elimina esta línea si no deseas que se envíe el formulario en caso de éxito
+            this.submit(); // Envía el formulario si es válido
         } else {
             alert('Por favor, corrige los errores en el formulario.');
         }
