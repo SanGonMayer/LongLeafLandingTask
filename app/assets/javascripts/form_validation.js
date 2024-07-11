@@ -32,10 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (isValid) {
-            alert('Formulario enviado correctamente');
+            alert('Form submitted successfully');
             this.submit(); // Envía el formulario si es válido
         } else {
-            alert('Por favor, corrige los errores en el formulario.');
+            alert('Please correct the errors in the form.');
         }
     });
 });

@@ -5,6 +5,6 @@ class UserMailer < ApplicationMailer
     @loan = loan
     pdf_generator = PdfGenerator.new(@loan)
     attachments['loan_application.pdf'] = pdf_generator.generate
-    mail(to: @loan.email, subject: 'Gracias por enviar el formulario')
+    mail(to: @loan.email, subject: 'Thank you for submitting the form')
   end
 end
