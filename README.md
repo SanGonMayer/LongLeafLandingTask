@@ -9,6 +9,53 @@ Make sure you have the following installed on your system:
 - Rails 7.1.3.4
 - Node.js and Yarn
 - Mailcatcher gem
+- **Highly recommended:** WSL with Ubuntu (for Windows users)
+
+### Installing WSL and Ubuntu
+
+1. **Install WSL**:
+    Open PowerShell as Administrator and run:
+    ```sh
+    wsl --install
+    ```
+
+2. **Install Ubuntu**:
+    After installing WSL, install Ubuntu from the Microsoft Store.
+
+3. **Set up Ubuntu**:
+    Open Ubuntu from the Start menu and follow the initial setup steps.
+
+### Installing rbenv for Ruby Version Management
+
+1. **Install rbenv and ruby-build**:
+    In your Ubuntu terminal, run:
+    ```sh
+    sudo apt update
+    sudo apt install -y rbenv
+    ```
+
+2. **Add rbenv to your shell**:
+    ```sh
+    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+    echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+    exec $SHELL
+    ```
+
+3. **Install ruby-build**:
+    ```sh
+    git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+    ```
+
+4. **Install Ruby**:
+    ```sh
+    rbenv install 3.1.3
+    rbenv global 3.1.3
+    ```
+
+5. **Verify the installation**:
+    ```sh
+    ruby -v
+    ```
 
 ## Installation
 
