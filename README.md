@@ -61,8 +61,8 @@ Make sure you have the following installed on your system:
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/your-repo.git
-    cd your-repo
+    git clone https://github.com/SanGonMayer/LongleafLendingTask
+    cd LongleafLendingTask
     ```
 
 2. **Install the required gems:**
