@@ -1,9 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('loan-form');
 
-    form.addEventListener('submit', function(event) {
-        event.preventDefault(); // Evita el envío del formulario para validaciones
-        
+    function validateForm() {
         let isValid = true;
         const fields = [
             {id: 'loan_address', name: 'address', errorMessage: 'Address is required'},
@@ -15,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             {id: 'loan_email', name: 'email', errorMessage: 'Email is required'},
             {id: 'loan_phone', name: 'phone', errorMessage: 'Phone number is required and must be numbers only', validate: value => /^\d+$/.test(value)}
         ];
-        
+
         fields.forEach(field => {
             const input = document.getElementById(field.id);
             const errorDiv = document.getElementById(`${field.name}-error`);
@@ -31,11 +29,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        if (isValid) {
+        return isValid;
+    }
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Evita el envío del formulario para validaciones
+
+        if (validateForm()) {
             alert('Form submitted successfully');
-            this.submit(); // Envía el formulario si es válido
+            form.submit(); // Envía el formulario si es válido
         } else {
             alert('Please correct the errors in the form.');
+        }
+    });
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            const activeStep = document.querySelector('.form-step.active');
+            const nextButton = activeStep.querySelector('.next-button');
+            if (nextButton) {
+                nextButton.click();
+            } else if (validateForm()) {
+                form.submit();
+            }
         }
     });
 });

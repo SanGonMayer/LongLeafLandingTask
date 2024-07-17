@@ -6,6 +6,7 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #f0f4f8;
+    padding: 20px;
 }
 
 .form-container {
@@ -19,6 +20,9 @@ body {
     overflow: hidden;
     min-height: 450px;
     height: 65%;
+    transition: height 0.4s ease; /* Smooth height transition */
+    overflow-y: auto; /* Añadir desplazamiento vertical */
+    max-height: 90vh; /* Ajusta la altura máxima para pantallas más pequeñas */
 }
 
 .title{
@@ -117,4 +121,35 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="email"]:focus,
 
 .border-red-500 {
     border-color: #f56565; /* Color rojo */
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 1rem;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .button-group button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.25rem;
+    }
+
+    .subtitle {
+        font-size: 0.875rem;
+    }
+
+    input[type="text"], input[type="number"], input[type="email"], input[type="tel"] {
+        font-size: 0.875rem;
+    }
 }

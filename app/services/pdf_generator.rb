@@ -19,8 +19,8 @@ class PdfGenerator
   private
 
   def header
-    pdf.text "Loan Application", size: 24, style: :bold, align: :center, color: '006400'
-    pdf.move_down 20
+    PdfFormatter.add_logo(pdf)
+    PdfFormatter.add_section_header(pdf, "Loan Application Summary")
   end
 
   def user_information
@@ -31,9 +31,9 @@ class PdfGenerator
       ["Field", "Value"],
       ["Address", loan.address],
       ["Loan Term (in months)", loan.loan_term],
-      ["Purchase Price", "$#{'%.2f' % loan.purchase_price}"],
-      ["Repair Budget", "$#{'%.2f' % loan.repair_budget}"],
-      ["After Repair Value (ARV)", "$#{'%.2f' % loan.arv}"],
+      ["Purchase Price", PdfFormatter.format_currency(loan.purchase_price)],
+      ["Repair Budget", PdfFormatter.format_currency(loan.repair_budget)],
+      ["After Repair Value (ARV)", PdfFormatter.format_currency(loan.arv)],
       ["Name", loan.name],
       ["Email", loan.email],
       ["Phone", loan.phone]
@@ -48,11 +48,11 @@ class PdfGenerator
 
     data = [
       ["Field", "Value"],
-      ["Loan Amount Based on Purchase Price (90%)", "$#{'%.2f' % calculator.loan_amount_based_on_purchase_price}"],
-      ["Loan Amount Based on ARV (70%)", "$#{'%.2f' % calculator.loan_amount_based_on_arv}"],
-      ["Total Loan Value", "$#{'%.2f' % calculator.total_loan_value}"],
-      ["Total Interest Expense", "$#{'%.2f' % calculator.total_interest_expense}"],
-      ["Estimated Profit", "$#{'%.2f' % calculator.estimated_profit}"]
+      ["Loan Amount Based on Purchase Price (90%)", PdfFormatter.format_currency(calculator.loan_amount_based_on_purchase_price)],
+      ["Loan Amount Based on ARV (70%)", PdfFormatter.format_currency(calculator.loan_amount_based_on_arv)],
+      ["Total Loan Value", PdfFormatter.format_currency(calculator.total_loan_value)],
+      ["Total Interest Expense", PdfFormatter.format_currency(calculator.total_interest_expense)],
+      ["Estimated Profit", PdfFormatter.format_currency(calculator.estimated_profit)]
     ]
 
     PdfFormatter.add_table(pdf, data, document_width)
