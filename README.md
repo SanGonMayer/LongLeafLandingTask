@@ -96,8 +96,16 @@ Make sure you have the following installed on your system:
     ```bash
     mailcatcher
     ```
-
-    Mailcatcher runs a web interface at [http://127.0.0.1:1080/](http://127.0.0.1:1080/).
+If there is any problem when openning the mailcatcher, try this:
+```bash
+gem uninstall mailcatcher
+gem install mailcatcher
+```
+Be sure your 1080 port is not beeing used so you can run:
+```bash
+mailcatcher --http-port 1080
+```
+Mailcatcher runs a web interface at [http://127.0.0.1:1080/](http://127.0.0.1:1080/).
 
 3. **Visit the application:**
     Open your browser and navigate to [http://localhost:3000](http://localhost:3000).
