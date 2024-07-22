@@ -24,7 +24,7 @@ class PdfGenerator
   end
 
   def user_information
-    pdf.move_down 20
+    pdf.move_down 1
     PdfFormatter.add_section_header(pdf, "User Information")
 
     data = [
@@ -43,13 +43,14 @@ class PdfGenerator
   end
 
   def calculated_information
-    pdf.move_down 20
+    pdf.move_down 5
     PdfFormatter.add_section_header(pdf, "Calculated Information")
 
     data = [
       ["Field", "Value"],
       ["Loan Amount Based on Purchase Price (90%)", PdfFormatter.format_currency(calculator.loan_amount_based_on_purchase_price)],
       ["Loan Amount Based on ARV (70%)", PdfFormatter.format_currency(calculator.loan_amount_based_on_arv)],
+      ["Repair Budget", PdfFormatter.format_currency(loan.repair_budget)],
       ["Total Loan Value", PdfFormatter.format_currency(calculator.total_loan_value)],
       ["Total Interest Expense", PdfFormatter.format_currency(calculator.total_interest_expense)],
       ["Estimated Profit", PdfFormatter.format_currency(calculator.estimated_profit)]

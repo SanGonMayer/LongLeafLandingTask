@@ -1,3 +1,18 @@
-<p>Thank you for completing the form,</p>
-<p>We have attached the PDF.</p>
-<p>Have a great day</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 11pt;
+    }
+  </style>
+</head>
+<body>
+  <p>Hi <%= @loan.name %>,</p>
+  <p>Please find attached your termsheet for your loan on <%= @loan.address %>.</p>
+  <p>Thanks,</p>
+  <p>Longleaf Lending.</p>
+</body>
+</html>
