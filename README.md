@@ -59,7 +59,7 @@ Make sure you have the following installed on your system:
 
 ## Installation
 
-1. **Clone the repository:**
+1. **Clone the repository:** (use your Ubuntu terminal)
     ```bash
     git clone https://github.com/SanGonMayer/LongleafLendingTask
     cd LongleafLendingTask
