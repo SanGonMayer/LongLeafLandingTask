@@ -92,7 +92,7 @@ Make sure you have the following installed on your system:
     rails server
     ```
 
-2. **Start Mailcatcher:**
+2. **Start Mailcatcher: (open another console)**
     ```bash
     mailcatcher
     ```
