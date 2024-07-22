@@ -18,10 +18,6 @@ class LoanCalculator
     ([loan_amount_based_on_purchase_price, loan_amount_based_on_arv].min) + loan.repair_budget
   end
 
-  /def total_interest_expense
-    total_loan_value * ((1 + monthly_interest_rate)**loan.loan_term - 1)
-  end/
-
   def total_interest_expense
     total_loan_value * monthly_interest_rate * loan.loan_term
   end
