@@ -41,7 +41,7 @@ Make sure you have the following installed on your system:
     exec $SHELL
     ```
 
-3. **Install ruby-build**:
+3. **Install ruby-build** (if it is empty, there is no problem and you can skip this step):
     ```sh
     git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
     ```
