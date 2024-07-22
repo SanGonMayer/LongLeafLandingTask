@@ -44,7 +44,7 @@
             <div class="form-step hidden">
                 <div>
                     <%= form.label :purchase_price, "Purchase Price", class: "block mb-1" %>
-                    <%= form.number_field :purchase_price, id: "loan_purchase_price", placeholder: "What are you purchasing the property for? Please include any assignment fee.", class: "w-full px-4 py-2 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:ring-0" %>
+                    <%= form.number_field :purchase_price, id: "loan_purchase_price", placeholder: "What are you purchasing the property for?", class: "w-full px-4 py-2 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:ring-0" %>
                     <div id="purchase_price-error" class="error-message hidden"></div>
                 </div>
                 <div class="button-group mt-4 flex justify-between">
@@ -68,7 +68,7 @@
             <div class="form-step hidden">
                 <div>
                     <%= form.label :arv, "After Repair Value (ARV)", class: "block mb-1" %>
-                    <%= form.number_field :arv, id: "loan_arv", placeholder: "What do you think the property's market value will be when you complete the rehab?", class: "w-full px-4 py-2 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:ring-0" %>
+                    <%= form.number_field :arv, id: "loan_arv", placeholder: "What do you think the property's market value will be after renovations?", class: "w-full px-4 py-2 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:ring-0" %>
                     <div id="arv-error" class="error-message hidden"></div>
                 </div>
                 <div class="button-group mt-4 flex justify-between">
