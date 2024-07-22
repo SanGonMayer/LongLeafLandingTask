@@ -116,9 +116,10 @@ Mailcatcher runs a web interface at [http://127.0.0.1:1080/](http://127.0.0.1:10
     - Follow the step-by-step form to input the required details.
 
 2. **Submit the form:**
-    - Once you complete the form, submit it. You should receive a confirmation message.
+    - Once you complete the form, submit it.
 
 3. **Check the email:**
     - Open Mailcatcher at [http://127.0.0.1:1080/](http://127.0.0.1:1080/).
     - You should see the email sent by the application with the PDF attachment.
+    - In case you don't see it, refresh the mailcatcher page.
     - Open the email and download the PDF.
