@@ -15,7 +15,7 @@ class LoanCalculator
   end
 
   def total_loan_value
-    [loan_amount_based_on_purchase_price, loan_amount_based_on_arv].min
+    [loan_amount_based_on_purchase_price, loan_amount_based_on_arv].min + loan.rehab_budget
   end
 
   def total_interest_expense
