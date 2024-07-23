@@ -124,7 +124,7 @@ Mailcatcher runs a web interface at [http://127.0.0.1:1080/](http://127.0.0.1:10
     - In case you don't see it, refresh the mailcatcher page.
     - Open the email and download the PDF.
 
-##Design Justifications
+## Design Justifications
 **MVC Architecture:** 
 The application follows the Model-View-Controller (MVC) architecture, which separates the data layer, business logic, and presentation layer. This makes the codebase more organized and easier to maintain.
 
