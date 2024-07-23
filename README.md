@@ -149,20 +149,25 @@ Formatting Methodologies: Methods such as add_logo, add_section_header, and add_
 Flexibility and Extensibility: This allows PdfGenerator to use different formatting methods without modifying its own implementation, providing flexibility and extensibility.
 
 **Form Validations:**
+
 Client-side Validations: I use JavaScript to validate form fields before submission, providing immediate feedback to the user.
 
 Server-side Validations: Model validations in Rails ensure that the submitted data is correct and complete before being processed and stored in the database.
 
 **Email Sending:**
+
 UserMailer: This class is responsible for setting up and sending emails. I have used Action Mailer to create customized emails with attachments, such as the generated loan PDF.
 
 Mailcatcher: During development, I have used Mailcatcher to intercept and review sent emails, ensuring that the content and format are correct before deploying to production. Additionally, Mailcatcher is used for a more realistic simulation since it uses a different port and works as another server.
 
 **Security:**
+
 CSRF (Cross-Site Request Forgery) Protection:
+
 Rails includes automatic CSRF protection. Each form includes an authenticity token that is validated on the server to ensure that requests are legitimate and originate from the same site.
 
 Output Escaping:
+
 Ensuring that all data output to views is properly escaped to prevent XSS (Cross-Site Scripting) attacks. Rails does this by default with ERB tags.
 
 SQL Injection Protection:
