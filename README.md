@@ -129,12 +129,16 @@ Mailcatcher runs a web interface at [http://127.0.0.1:1080/](http://127.0.0.1:10
 The application follows the Model-View-Controller (MVC) architecture, which separates the data layer, business logic, and presentation layer. This makes the codebase more organized and easier to maintain.
 
 Models: The models in our application represent the data and business logic. For example, the Loan model encapsulates all logic related to loans, including validations and relationships with other entities.
+
 Views: The views are responsible for presenting information to the user. We use views in ERB (Embedded Ruby) to generate dynamic HTML based on data provided by the controllers.
+
 Controllers: The controllers handle application logic and user interactions. For example, the LoansController manages requests related to loans, including the creation and display of forms.
 
 **Service Pattern:**
 The service pattern is used to encapsulate complex business logic that does not belong to a specific model. In the application, I have implemented the PdfGenerator and PdfFormatter as services to manage PDF generation.
+
 PdfGenerator: This service is responsible for orchestrating the creation of the PDF, using PdfFormatter to apply the appropriate formatting. This follows the single responsibility principle, as each class has a single, clear responsibility.
+
 PdfFormatter: This service is responsible for applying formatting to the PDF, including the addition of logos, headers, and formatted tables.
 
 **Strategy Pattern**
