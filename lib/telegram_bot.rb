@@ -6,6 +6,7 @@ class TelegramBot
 
   @step = :address
   @user_data = {}
+  @modify_field = nil
 
   def self.run
     Telegram::Bot::Client.run(TOKEN) do |bot|
@@ -14,6 +15,7 @@ class TelegramBot
         when '/start'
           @step = :address
           @user_data = {}
+          @modify_field = nil
           bot.api.send_message(chat_id: message.chat.id, text: 'Hey! Welcome to our loan calculator! Just follow the steps! Please enter the property address:')
         else
           handle_message(bot, message)
@@ -23,6 +25,14 @@ class TelegramBot
   end
 
   def self.handle_message(bot, message)
+    if @modify_field
+      @user_data[@modify_field.to_sym] = message.text
+      @modify_field = nil
+      @step = :confirmation
+      show_summary(bot, message.chat.id)
+      return
+    end
+
     case @step
     when :address
       @user_data[:address] = message.text
@@ -54,12 +64,45 @@ class TelegramBot
       @step = :phone
     when :phone
       @user_data[:phone] = message.text
-      loan = Loan.new(@user_data)
-      pdf_path = generate_pdf(loan)
-      send_pdf(bot, message.chat.id, pdf_path)
-      bot.api.send_message(chat_id: message.chat.id, text: 'Thank you! Your PDF has been generated and sent. If you want to start over, type /start')
-      @step = nil
+      @step = :confirmation
+      show_summary(bot, message.chat.id)
+    when :confirmation
+      if message.text.downcase == 'yes'
+        loan = Loan.new(@user_data)
+        pdf_path = generate_pdf(loan)
+        send_pdf(bot, message.chat.id, pdf_path)
+        bot.api.send_message(chat_id: message.chat.id, text: 'Thank you! Your PDF has been generated and sent. If you want to start over, type /start')
+        @step = nil
+      elsif message.text.downcase == 'no'
+        bot.api.send_message(chat_id: message.chat.id, text: 'Which field would you like to modify? (address, loan_term, purchase_price, repair_budget, arv, name, email, phone)')
+        @step = :modify
+      end
+    when :modify
+      if @user_data.keys.include?(message.text.to_sym)
+        @modify_field = message.text
+        bot.api.send_message(chat_id: message.chat.id, text: "Please enter the new value for #{message.text}:")
+      else
+        bot.api.send_message(chat_id: message.chat.id, text: 'Invalid field. Please enter a valid field name:')
+      end
     end
+  end
+
+  def self.show_summary(bot, chat_id)
+    summary = <<-SUMMARY
+    Here are the details you provided:
+    Address: #{@user_data[:address]}
+    Loan Term: #{@user_data[:loan_term]}
+    Purchase Price: #{@user_data[:purchase_price]}
+    Repair Budget: #{@user_data[:repair_budget]}
+    After Repair Value (ARV): #{@user_data[:arv]}
+    Name: #{@user_data[:name]}
+    Email: #{@user_data[:email]}
+    Phone: #{@user_data[:phone]}
+
+    Are all these values correct? (Yes/No)
+    SUMMARY
+
+    bot.api.send_message(chat_id: chat_id, text: summary)
   end
 
   def self.generate_pdf(loan)
@@ -74,3 +117,5 @@ class TelegramBot
     bot.api.send_document(chat_id: chat_id, document: Faraday::UploadIO.new(pdf_path, 'application/pdf'))
   end
 end
+
+TelegramBot.run
