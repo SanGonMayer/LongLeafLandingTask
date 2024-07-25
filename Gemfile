@@ -33,6 +33,8 @@ gem 'tailwindcss-rails'
 gem 'prawn'
 gem 'prawn-table'
 #gem 'webpacker'
+gem 'telegram-bot-ruby'
+
 
 
 
